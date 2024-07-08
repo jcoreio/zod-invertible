@@ -43,7 +43,7 @@ describe(`invertible`, function () {
   testcase('works on array', z.array(ParseFloatSchema), ['5', '10.3'])
   testcase(
     'works on union',
-    z.union([z.boolean(), ParseFloatSchema]),
+    z.union([ParseFloatSchema, z.boolean()]),
     '10.3',
     true
   )
