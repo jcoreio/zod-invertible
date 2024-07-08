@@ -21,6 +21,9 @@ always be defined.
 The inverse of `ZodType.catch(...)` will not catch. If you want to use a fallback value if errors are thrown during parsing or
 formatting, add your own logic in the `parse` and `format` functions you pass to `invertible`.
 
+If the output types of `z.union([...])` options overlap, then `invert(z.union([...])).parse(output)` may format with a
+different union option than the one that parsed the input.
+
 # Example
 
 ```sh
