@@ -24,6 +24,9 @@ formatting, add your own logic in the `parse` and `format` functions you pass to
 If the output types of `z.union([...])` options overlap, then `invert(z.union([...])).parse(output)` may format with a
 different union option than the one that parsed the input.
 
+If you have recursive schemas (using `z.lazy()`), the inverse `z.lazy()` schemas will re-invert the resolved schema each time
+they are used. I may fix this in the future with a `WeakMap` inverse cache.
+
 # Example
 
 ```sh
