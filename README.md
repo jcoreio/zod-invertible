@@ -18,7 +18,7 @@ pnpm i zod-invertible
 
 ```ts
 import z from 'zod'
-import { invertible, invert } from 'zod-intertible'
+import { invertible, invert, ZodInvertible } from 'zod-intertible'
 
 const StringToNumber = invertible(
   z.string(),
@@ -36,6 +36,8 @@ const StringToNumber = invertible(
   (n) => String(n)
 )
 
+StringToNumber instanceof ZodInvertible // true
+
 StringToNumber.parse('3.5') // 3.5
 
 const NumberToString = invert(StringToNumber)
@@ -51,6 +53,7 @@ invert(obj).parse({ foo: 3.5 }) // { foo: '3.5' }
 ## `invertible(inputSchema, parse, outputSchema, format)`
 
 Creates an invertible schema that transforms from an input type to a different output type.
+Returns a `ZodInvertible`, which is a subclass of `ZodPipeline`.
 
 ### `inputSchema`
 
