@@ -8,6 +8,19 @@ declare zod schemas that can be inverted to format from output to input
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![npm version](https://badge.fury.io/js/zod-invertible.svg)](https://badge.fury.io/js/zod-invertible)
 
+# Limitations and notes
+
+`zod-invertible` doesn't support the following schemas, and `invert` will throw an error if it encounters them:
+
+- `z.preprocess(...)`
+- `ZodType.transform(...)` (outside of the transform created by `invertible`)
+
+The inverse of `ZodType.default(...)` will not have a default, which should be okay, since the input to the inverse should
+always be defined.
+
+The inverse of `ZodType.catch(...)` will not catch. If you want to use a fallback value if errors are thrown during parsing or
+formatting, add your own logic in the `parse` and `format` functions you pass to `invertible`.
+
 # Example
 
 ```sh
