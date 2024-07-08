@@ -120,4 +120,17 @@ describe(`invertible`, function () {
   testcase('works on readonly', z.object({ a: ParseFloatSchema }).readonly(), {
     a: '3.5',
   })
+  type TreeNode<V> = { left?: TreeNode<V>; right?: TreeNode<V>; value: V }
+  const TreeNode: z.ZodType<TreeNode<number>, any, TreeNode<string>> = z.object(
+    {
+      left: z.lazy(() => TreeNode).optional(),
+      right: z.lazy(() => TreeNode).optional(),
+      value: ParseFloatSchema,
+    }
+  )
+  testcase('works on recursive schema', TreeNode, {
+    value: '3.5',
+    left: { value: '6.8', right: { value: '2.5' } },
+    right: { value: '13.9' },
+  })
 })
