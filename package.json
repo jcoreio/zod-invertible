@@ -1,0 +1,51 @@
+{
+  "name": "zod-invertible",
+  "description": "declare zod schemas that can be inverted to format from output to input",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcoreio/zod-invertible.git"
+  },
+  "homepage": "https://github.com/jcoreio/zod-invertible",
+  "bugs": {
+    "url": "https://github.com/jcoreio/zod-invertible/issues"
+  },
+  "author": "Andy Edwards",
+  "license": "MIT",
+  "keywords": [
+    "zod",
+    "inverse",
+    "invertible",
+    "parse",
+    "format"
+  ],
+  "devDependencies": {
+    "@jcoreio/eslint-plugin-implicit-dependencies": "^1.1.1",
+    "@jcoreio/toolchain": "4.6.0",
+    "@jcoreio/toolchain-circle": "^4.6.0",
+    "@jcoreio/toolchain-esnext": "^4.6.0",
+    "@jcoreio/toolchain-mocha": "^4.6.0",
+    "@jcoreio/toolchain-semantic-release": "^4.6.0",
+    "@jcoreio/toolchain-typescript": "^4.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-no-only-tests": "^3.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.0"
+  },
+  "version": "0.0.0-development",
+  "sideEffects": false,
+  "scripts": {
+    "tc": "toolchain",
+    "toolchain": "toolchain",
+    "test": "toolchain test",
+    "prepublishOnly": "echo This package is meant to be published by semantic-release from the dist build directory. && exit 1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "packageManager": "pnpm@8.11.0",
+  "dependencies": {
+    "@babel/runtime": "^7.18.6"
+  }
+}
