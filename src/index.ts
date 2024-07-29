@@ -146,7 +146,12 @@ export function invert<T extends z.ZodTypeAny>(
         const {
           _def: { inputSchema, outputSchema, parse, format },
         } = schema
-        return invertible(outputSchema, format, inputSchema, parse)
+        return invertible(
+          invert(outputSchema),
+          format,
+          invert(inputSchema),
+          parse
+        )
       }
       const { _def } = schema as any as z.ZodPipeline<any, any>
       return invert(_def.out).pipe(invert(_def.in))
