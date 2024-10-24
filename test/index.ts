@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha'
 import { expect } from 'chai'
 import z from 'zod'
-import { invertible, invert } from '../src/index'
+import { invertible, invert, IgnoreEffect } from '../src/index'
 
 function testcase<T extends z.ZodTypeAny>(
   description: string,
@@ -120,6 +120,9 @@ describe(`invertible`, function () {
   testcase('works on readonly', z.object({ a: ParseFloatSchema }).readonly(), {
     a: '3.5',
   })
+  const ignoredPreprocess = z.preprocess((input) => input, ParseFloatSchema)
+  ;(ignoredPreprocess as any)[IgnoreEffect] = true
+  testcase('works on ignored preprocess', ignoredPreprocess, '3.5')
   type TreeNode<V> = { left?: TreeNode<V>; right?: TreeNode<V>; value: V }
   const TreeNode: z.ZodType<TreeNode<number>, any, TreeNode<string>> = z.object(
     {

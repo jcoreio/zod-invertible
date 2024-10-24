@@ -59,6 +59,8 @@ export function invertible<T extends z.ZodTypeAny, U extends z.ZodTypeAny>(
   return new ZodInvertible(schema, parse, outSchema, format)
 }
 
+export const IgnoreEffect = Symbol('IgnoreEffect')
+
 export function invert<T extends z.ZodTypeAny>(
   schema: T
 ): z.ZodType<z.input<T>, any, z.output<T>> {
@@ -125,6 +127,9 @@ export function invert<T extends z.ZodTypeAny>(
         }
         case 'preprocess':
         case 'transform':
+          if ((schema as any)[IgnoreEffect]) {
+            return invert(innerType)
+          }
           throw new Error(`effect not supported: ${effect.type}`)
       }
       break

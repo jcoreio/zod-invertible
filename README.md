@@ -15,6 +15,17 @@ declare zod schemas that can be inverted to format from output to input
 - `z.preprocess(...)`
 - `ZodType.transform(...)` (outside of the transform created by `invertible`)
 
+However, you may work around this by attaching a symbol:
+
+```ts
+import { schema, IgnoreEffect } from 'zod-intervible'
+
+const innerSchema = ...
+const schema = z.preprocess((value) => ..., innerSchema)
+;(schema as any)[IgnoreEffect] = true
+const inverse = invert(schema) // equivalent to invert(innerSchema)
+```
+
 The inverse of `ZodType.default(...)` will not have a default, which should be okay, since the input to the inverse should
 always be defined.
 
