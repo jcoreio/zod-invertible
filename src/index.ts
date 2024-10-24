@@ -61,6 +61,13 @@ export function invertible<T extends z.ZodTypeAny, U extends z.ZodTypeAny>(
 
 export const IgnoreEffect = Symbol('IgnoreEffect')
 
+export function ignoreEffect<T extends z.ZodEffects<any, any, any>>(
+  schema: T
+): T {
+  ;(schema as any)[IgnoreEffect] = true
+  return schema
+}
+
 export function invert<T extends z.ZodTypeAny>(
   schema: T
 ): z.ZodType<z.input<T>, any, z.output<T>> {

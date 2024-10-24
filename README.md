@@ -15,14 +15,13 @@ declare zod schemas that can be inverted to format from output to input
 - `z.preprocess(...)`
 - `ZodType.transform(...)` (outside of the transform created by `invertible`)
 
-However, you may work around this by attaching a symbol:
+However, you may work around this by marking the schema with `ignoreEffect`:
 
 ```ts
-import { schema, IgnoreEffect } from 'zod-intervible'
+import { schema, ignoreEffect } from 'zod-intervible'
 
 const innerSchema = ...
-const schema = z.preprocess((value) => ..., innerSchema)
-;(schema as any)[IgnoreEffect] = true
+const schema = ignoreEffect(z.preprocess((value) => ..., innerSchema))
 const inverse = invert(schema) // equivalent to invert(innerSchema)
 ```
 
