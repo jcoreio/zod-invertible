@@ -11,6 +11,8 @@ function testcase<T extends z.ZodTypeAny>(
   it(description, async function () {
     for (const input of inputs) {
       const output = schema.parse(input)
+      // `await input` needed for Promise test
+      // eslint-disable-next-line @typescript-eslint/await-thenable
       expect(await invert(schema).parseAsync(output)).to.deep.equal(await input)
     }
   })

@@ -2,7 +2,7 @@ import z from 'zod'
 
 export interface ZodInvertibleDef<
   I extends z.ZodTypeAny,
-  O extends z.ZodTypeAny
+  O extends z.ZodTypeAny,
 > extends z.ZodPipelineDef<z.ZodEffects<I, z.input<O>>, O> {
   inputSchema: I
   outputSchema: O
@@ -18,7 +18,7 @@ export interface ZodInvertibleDef<
 
 export class ZodInvertible<
   I extends z.ZodTypeAny,
-  O extends z.ZodTypeAny
+  O extends z.ZodTypeAny,
 > extends z.ZodPipeline<z.ZodEffects<I, z.input<O>>, O> {
   declare _def: ZodInvertibleDef<I, O>
 
