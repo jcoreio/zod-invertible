@@ -8,9 +8,6 @@ dependencies:
   '@babel/runtime':
     specifier: ^7.18.6
     version: 7.24.7
-  zod:
-    specifier: ^3.23.8
-    version: 3.23.8
 
 devDependencies:
   '@jcoreio/eslint-plugin-implicit-dependencies':
@@ -61,6 +58,9 @@ devDependencies:
   typescript:
     specifier: ^5.1.0
     version: 5.5.2
+  zod:
+    specifier: ^3.23.8
+    version: 3.23.8
 
 packages:
 
@@ -4244,3 +4244,4 @@ packages:
 
   /zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+    dev: true
